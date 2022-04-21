@@ -26,7 +26,6 @@ operators.forEach((op) => {
         // save the number before the operator into a new variable
         if(num != '') num2 = num;
         // change the operator to the one that was clicked on
-        //display.textContent = op.value;
         operator = op.value;
         // display the original number plus the operator
         display.textContent = num + operator;
@@ -44,6 +43,10 @@ numbers.forEach((number) => {
 })
 // check if they already have a decimal in the number
 decimal.addEventListener('click', () => {
+    decimalHandler();
+})
+// passed off to helper function
+function decimalHandler() {
     // add a leading zero for numbers less than one
     if (num == '') {
         num += '0.';
@@ -56,7 +59,7 @@ decimal.addEventListener('click', () => {
     }
     // otherwise, just return and don't update num or display
     else return;
-})
+}
 // reset everything when clear is clicked and display a '0'
 clear.addEventListener('click', () => {
     display.textContent = '0';
@@ -67,10 +70,15 @@ clear.addEventListener('click', () => {
 })
 // delete the latest number clicked by the user and display it
 del.addEventListener('click', () => {
+    delHandler();
+})
+// function to delete last number inputted
+function delHandler() {
     if(display.textContent == '0') return;
     display.textContent = display.textContent.slice(0,-1);
     if(num) num = num.slice(0,-1);
-})
+    if(display.textContent == '') display.textContent = '0';
+}
 // do the current computation and display the results
 equals.addEventListener('click', () => {
     doMath();
@@ -82,6 +90,52 @@ function doMath() {
     results.textContent = num2 + operator + num + "=";
     num = answer;
     num2 = '';
+}
+// function for keyboard support and check which key was pressed
+document.addEventListener('keydown', (e) => {
+    keyPress(e.key);
+})
+ 
+// function to display number if number was used
+function keyPress(key) {
+    // if shift is used to produce an operator key, ignore it
+    if(key == 'Shift') return;
+    // if it is a number, display it
+    if(!isNaN(parseInt(key))) {
+        num += key;
+        display.textContent = num;
+    }
+    else if(key == '.') {
+        decimalHandler();
+    }
+    // if they type in an operation, call helper function to resolve math
+    else if(key == '+' || key == '-' || key == '*' || key == '/') {
+        operationHandler(key);
+        //operationHandler(key);
+    }
+    else if(key == 'Backspace') {
+        delHandler();
+    }
+    // call doMath() if they type in an equals sign or enter
+    else if(key == '=' || key == 'Enter') doMath();
+    // otherwise return, invalid input
+    else return;
+}
+function operationHandler(op) {
+    // if there are two numbers stored, do math with current operator, then switch operator
+    if(num != '' && num2 != '') {
+        doMath();
+        operator = op;
+    }
+    // save the number before the operator into a new variable
+    if(num != '') num2 = num;
+    // change the operator to the one that was clicked on
+    operator = op;
+    // display the original number plus the operator
+    display.textContent = num + operator;
+    results.textContent = num + operator;
+    // reset the number
+    num = '';
 }
 // functions to carry out simple arithmetic
 let add = (x,y) => x + y;
