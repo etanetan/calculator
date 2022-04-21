@@ -3,8 +3,18 @@
 body {
     text-align: center;
     vertical-align: middle;
+}
+
+button {
     font-size: 24px;
     font-family: 'Source Code Pro', monospace;
+}
+
+img {
+    mix-blend-mode: multiply;
+    margin-top: 50px;
+    height: 50px;
+    width: 50px;
 }
 
 #container {
@@ -16,8 +26,8 @@ body {
     grid-template-areas: 'd d d d' 'd d d d' 'clear clear delete delete'
                         'seven eight nine divide' 'four five six multiplication'
                         'one two three minus' 'dec nothing equals plus';                        
-    gap: .6rem;
-    padding: 1.5rem;
+    gap: .5rem;
+    padding: 1rem;
     border: 2px solid black;
     border-radius: 15px;
     background-color: lightgray;
@@ -34,12 +44,32 @@ body {
     border-radius: 5px;
     background-color: white;
 }
+
+#results, #display {
+    display: flex;
+    justify-content: end;
+    font-family: 'Source Code Pro', monospace;
+}
+
+#results {
+    border:none;
+    position: absolute;
+    top: 125px;
+    right: 550px;
+    height: 40px;
+    width: 315px;
+    align-items: flex-start;
+    font-size: 24px;
+    padding: 5px;
+}
+
 #display {
     grid-area: d;
-    display: flex;
+    overflow: hidden;
+    word-break: break-word;
     align-items: end;
-    justify-content: end;
     padding: 10px;
+    font-size: 48px;
 }
 #clear {
     grid-area: clear;
