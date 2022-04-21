@@ -1,0 +1,16 @@
+#container {
+    display: grid;
+    width: 25vw;
+    height: 65vh;
+    margin: 12vh auto auto auto;
+    grid-template: repeat(7, 1fr) / repeat(4, 1fr);
+    gap: .6rem;
+    padding: 1.5rem;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.item {
+    border: 2px solid blue;
+    border-radius: 8px;
+}
