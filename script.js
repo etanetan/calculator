@@ -1,6 +1,7 @@
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 
+const decimal = document.getElementById('decimal');
 const equals = document.getElementById('equals');
 const clear = document.getElementById('clear');
 const del = document.getElementById('delete');
@@ -41,6 +42,21 @@ numbers.forEach((number) => {
         display.textContent = num;
     })
 })
+// check if they already have a decimal in the number
+decimal.addEventListener('click', () => {
+    // add a leading zero for numbers less than one
+    if (num == '') {
+        num += '0.';
+        display.textContent = num;
+    }
+    // if the number doesn't have a decimal point, add it now
+    else if (!num.includes('.')) {
+        num += '.';
+        display.textContent = num;
+    }
+    // otherwise, just return and don't update num or display
+    else return;
+})
 // reset everything when clear is clicked and display a '0'
 clear.addEventListener('click', () => {
     display.textContent = '0';
@@ -70,10 +86,11 @@ function doMath() {
 // functions to carry out simple arithmetic
 let add = (x,y) => x + y;
 let subtract = (x,y) => x - y;
-let multiply = (x,y) => x * y;
+// have multiply and divide both get rid of trailing zeroes and round to 8 digits
+let multiply = (x,y) => parseFloat((x * y).toFixed(8));
 function division(x,y) {
     if (y == 0) return 'err';
-    else return ((x / y).toFixed(8));
+    else return parseFloat(((x / y).toFixed(8)));
 }
 // function to decide which arithmetic operation is to be used based on chosen operator
 function operate(op, x, y) {
