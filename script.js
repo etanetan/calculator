@@ -73,7 +73,7 @@ let subtract = (x,y) => x - y;
 let multiply = (x,y) => x * y;
 function division(x,y) {
     if (y == 0) return 'err';
-    else return (x / y);
+    else return ((x / y).toFixed(8));
 }
 // function to decide which arithmetic operation is to be used based on chosen operator
 function operate(op, x, y) {
