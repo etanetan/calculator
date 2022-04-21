@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
-
+/* have all of the text be in the center of the buttons */
 body {
     text-align: center;
     vertical-align: middle;
 }
-
+/* have Source Code Pro font in all the buttons */
 button {
     font-size: 24px;
     font-family: 'Source Code Pro', monospace;
 }
-
+/* get rid of background of github image and place it below calculator */
 img {
     mix-blend-mode: multiply;
     margin-top: 50px;
     height: 50px;
     width: 50px;
 }
-
+/* have the container as a grid and have display on top followed by standard calculator layout */
 #container {
     display: grid;
     width: 25vw;
@@ -32,13 +32,13 @@ img {
     border-radius: 15px;
     background-color: lightgray;
 }
-
+/* each box is a flex item with the content in the center */
 .center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+/* each item in the calculator has a border and a white background */
 #container > * {
     border: 2px solid black;
     border-radius: 5px;
@@ -50,19 +50,19 @@ img {
     justify-content: end;
     font-family: 'Source Code Pro', monospace;
 }
-
+/* this section is right above the regular display to show the past computations. it's placed absolutely */
 #results {
-    border:none;
+    border: none;
     position: absolute;
     top: 125px;
-    right: 550px;
+    right: 555px;
     height: 40px;
     width: 315px;
     align-items: flex-start;
     font-size: 24px;
     padding: 5px;
 }
-
+/* the display accommadates for large numbers and has larger font than the rest of the calculator */
 #display {
     grid-area: d;
     overflow: hidden;
@@ -71,6 +71,7 @@ img {
     padding: 10px;
     font-size: 48px;
 }
+/* have the clear and delete buttons a different color to stand out */
 #clear {
     grid-area: clear;
     background-color: aqua;
@@ -79,6 +80,7 @@ img {
     grid-area: delete;
     background-color: salmon;
 }
+/* the rest of the lines layout the proper buttons in their places in the calculator */
 #plus {
     grid-area: plus;
 }
