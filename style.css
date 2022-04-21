@@ -1,16 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+body {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    font-family: 'Source Code Pro', monospace;
+}
+
 #container {
     display: grid;
     width: 25vw;
     height: 65vh;
     margin: 12vh auto auto auto;
     grid-template: repeat(7, 1fr) / repeat(4, 1fr);
+    grid-template-areas: 'd d d d' 'd d d d' 'clear clear delete delete'
+                        'seven eight nine divide' 'four five six multiplication'
+                        'one two three minus' 'dec nothing equals plus';                        
     gap: .6rem;
     padding: 1.5rem;
-    border: 1px solid black;
-    border-radius: 8px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: lightgray;
 }
 
-.item {
-    border: 2px solid blue;
-    border-radius: 8px;
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container > * {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+}
+#display {
+    grid-area: d;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    padding: 10px;
+}
+#clear {
+    grid-area: clear;
+    background-color: aqua;
+}
+#delete {
+    grid-area: delete;
+    background-color: salmon;
+}
+#plus {
+    grid-area: plus;
+}
+#minus {
+    grid-area: minus;
+}
+#multiply {
+    grid-area: multiplication;
+}
+#divide {
+    grid-area: divide;
+}
+#one {
+    grid-area: one;
+}
+#two {
+    grid-area: two;
+}
+#three {
+    grid-area: three;
+}
+#four {
+    grid-area: four;
+}
+#five {
+    grid-area: five;
+}
+#six {
+    grid-area: six;
+}
+#seven {
+    grid-area: seven;
+}
+#eight {
+    grid-area: eight;
+}
+#nine {
+    grid-area: nine;
+}
+#zero {
+    grid-area: nothing;
+}
+#decimal {
+    grid-area: dec;
+}
+#equals {
+    grid-area: equals;
 }
