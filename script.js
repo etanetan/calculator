@@ -1,21 +1,11 @@
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 /*
-const zero = document.getElementById('zero');
-const one = document.getElementById('one');
-const two = document.getElementById('two');
-const three = document.getElementById('three');
-const four = document.getElementById('four');
-const five = document.getElementById('five');
-const six = document.getElementById('six');
-const seven = document.getElementById('seven');
-const eight = document.getElementById('eight');
-const nine = document.getElementById('nine');
-*/
 const plus = document.getElementById('plus');
 const minus = document.getElementById('minus');
 const times = document.getElementById('multiply');
 const divide = document.getElementById('divide');
+*/
 const equals = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 const clear = document.getElementById('clear');
@@ -23,65 +13,71 @@ const del = document.getElementById('delete');
 const display = document.getElementById('display');
 const results = document.getElementById('results');
 const container = document.getElementById('container');
-
-let numberOne = '';
-let numberTwo = '';
+// variable to keep track of display value before operator is chosen
+let num = '';
+let num2 = '';
 let operator = '';
 let answer = '';
-
+// when an operator is clicked, 
 operators.forEach((op) => {
     op.addEventListener('click', () => {
-        if(numberOne && numberTwo) {
+        // if there are two numbers stored, do math
+        /*
+        if(num != '' && num2 != '') {
             operator = op.value;
             doMath();
         }
-        if(numberOne) numberTwo = numberOne;
+        */
+        // save the number before the operator into a new variable
+        if(num != '') num2 = num;
+        // change the operator to the one that was clicked on
+        //display.textContent = op.value;
         operator = op.value;
-        display.textContent = numberOne + operator;
-        results.textContent = numberOne + operator;
-        numberOne = '';
+        // display the original number plus the operator
+        display.textContent = num + operator;
+        results.textContent = num + operator;
+        // reset the number
+        num = '';
     })
 })
-
+// when a number is clicked before an operator, add it to the displayed number
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        numberOne += number.value;
-        display.textContent = numberOne;
+        num += number.value;
+        display.textContent = num;
     })
 })
-
+// reset everything when clear is clicked and display a '0'
 clear.addEventListener('click', () => {
     display.textContent = '0';
-    numberOne = '';
+    num = '';
     operator = '';
     results.textContent = '';
 })
-
+// delete the latest number clicked by the user and display it
 del.addEventListener('click', () => {
     display.textContent = display.textContent.slice(0,-1);
-    if(numberOne) numberOne = numberOne.slice(0,-1);
+    if(num) num = num.slice(0,-1);
 })
 
 equals.addEventListener('click', () => {
-    doMath();
+    answer = operate(operator, parseFloat(num), parseFloat(num2));
+    display.textContent = answer;
+    results.textContent = num + operator + num2 + "=";
+    num = answer;
 })
 
-function doMath() {
-    answer = operate(operator, parseFloat(numberTwo), parseFloat(numberOne));
-    display.textContent = answer;
-    display.textContent = answer;
-    numberOne = answer;
+function add(x,y) {
+    return x + y;
 }
-
-let add = (x,y) => x + y;
 let subtract = (x,y) => x - y;
 let multiply = (x,y) => x * y;
 let division = (x,y) => x / y;
 
-function operate(operator, x, y) {
-    if(operator == '+') add(x,y);
-    else if(operator == '-') subtract(x,y);
-    else if(operator == '*') multiply(x,y);
-    else if(operator == '/') divide(x,y);
-    else return 'error';
+function operate(op, x, y) {
+    if(op == "+") return (add(x,y)).toString();
+    else if(op == "-") return (subtract(x,y)).toString();
+    else if(op == "*") return (multiply(x,y)).toString();
+    else if(op == "/") return (divide(x,y)).toString();
+    else return 'wtf';
 }
