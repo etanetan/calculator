@@ -63,12 +63,16 @@ function decimalHandler() {
 }
 // reset everything when clear is clicked and display a '0'
 clear.addEventListener('click', () => {
+    clearHandler();
+})
+// function to handle clear press
+function clearHandler() {
     display.textContent = '0';
     num = '';
     num2 = '';
     operator = '';
     results.textContent = '';
-})
+}
 // delete the latest number clicked by the user and display it
 del.addEventListener('click', () => {
     delHandler();
@@ -120,10 +124,13 @@ function keyPress(key) {
     else if(key == 'Backspace') {
         delHandler();
     }
+    else if(key == 'Escape') {
+        clearHandler();
+    }
     // call doMath() if they type in an equals sign or enter
     else if(key == '=' || key == 'Enter') doMath();
     // otherwise return, invalid input
-    else return;
+    else display.textContent = key;
 }
 function operationHandler(op) {
     // if there are two numbers stored, do math with current operator, then switch operator
