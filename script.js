@@ -1,6 +1,7 @@
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 
+const divide = document.getElementById('divide');
 const decimal = document.getElementById('decimal');
 const equals = document.getElementById('equals');
 const clear = document.getElementById('clear');
@@ -109,9 +110,12 @@ function keyPress(key) {
         decimalHandler();
     }
     // if they type in an operation, call helper function to resolve math
-    else if(key == '+' || key == '-' || key == '*' || key == '/') {
+    else if(key == '+' || key == '-' || key == '*') {
         operationHandler(key);
-        //operationHandler(key);
+    }
+    // special case for division to show real division symbol instead of slash
+    else if(key == '/') {
+        operationHandler(divide.value);
     }
     else if(key == 'Backspace') {
         delHandler();
