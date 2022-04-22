@@ -130,7 +130,7 @@ function keyPress(key) {
     // call doMath() if they type in an equals sign or enter
     else if(key == '=' || key == 'Enter') doMath();
     // otherwise return, invalid input
-    else display.textContent = key;
+    else return;
 }
 function operationHandler(op) {
     // if there are two numbers stored, do math with current operator, then switch operator
